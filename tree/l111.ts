@@ -1,0 +1,23 @@
+class TreeNode {
+    val: number
+    left: TreeNode | null
+    right: TreeNode | null
+    constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+        this.val = (val === undefined ? 0 : val)
+        this.left = (left === undefined ? null : left)
+        this.right = (right === undefined ? null : right)
+    }
+}
+
+
+function minDepth(root: TreeNode | null): number {
+    if (root == null) return 0;
+    return helper(root, 1);
+};
+
+function helper(node: TreeNode | null, level: number) {
+    if (node == null) return Infinity;
+    if (node.left == null && node.right == null) return level;
+    return Math.min(helper(node.right, level + 1), helper(node.left, level + 1));
+}
+
