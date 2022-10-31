@@ -1,0 +1,1 @@
+SELECT * FROM  美国各州县确诊与死亡数统计表 WHERE to_timestamp(日期,'YYYY/MM/DD') = to_timestamp('2020/12/30','YYYY/MM/DD') ORDER BY 累计确诊 DESC LIMIT 10
