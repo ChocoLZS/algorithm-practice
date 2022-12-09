@@ -1,4 +1,4 @@
-package leetcode.并查集;
+package leetcode.unionfind;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,11 +18,13 @@ public class loffer116 {
                 }
             }
         }
-        Set<Integer> res = new HashSet<>();
+        int res = 0;
         for (int num : fa) {
-            res.add(find(num));
+            if (num == fa[num]) {
+                res++;
+            }
         }
-        return res.size();
+        return res;
     }
 
     int find(int i) {

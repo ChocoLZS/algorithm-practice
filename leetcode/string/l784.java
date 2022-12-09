@@ -26,11 +26,11 @@ public class l784 {
 
     void helper(String s, int index) {
         if (index >= indexes.size()) {
-            return;
+            return; 
         }
         StringBuilder sb = new StringBuilder(s);
         int i = indexes.get(index);
-        //lower
+        //lower  
         sb.setCharAt(i, Character.toLowerCase(s.charAt(i)));
         res.add(sb.toString());
         helper(sb.toString(), index+1);

@@ -32,6 +32,6 @@ public class l261 {
     }
 
     void union(int i, int j) {
-        uf[j] = find(uf[i]);
+        uf[find(j)] = find(i);
     }
 }
