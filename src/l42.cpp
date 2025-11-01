@@ -53,6 +53,45 @@ public:
         }
         return result;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    int trap(std::vector<int>& height) {
+        if (height.size() <= 2) return 0; // 边界
+        int left_heights[20001] = {0};
+        int right_heights[20001] = {0};
+        int sum = 0;
+        for (int left = 1; left <= height.size() - 1; left++) {
+            left_heights[left] = std::max(height[left - 1], left_heights[left - 1]);
+        } 
+        for (int right = height.size() - 2; right >= 0; right--) {
+            right_heights[right] = std::max(height[right + 1], right_heights[right + 1]);
+        }
+        for (int i = 1; i <= height.size() - 2;i++) {
+            int water = std::min(left_heights[i], right_heights[i]) - height[i];
+            if (water > 0) {
+                sum+=water;
+            }
+        }
+        return sum;
+    }
 };
 
 int main() {
