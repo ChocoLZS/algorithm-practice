@@ -66,7 +66,7 @@ mkdir -p "$OUTPUT_DIR"
 
 # 编译 C++ 文件，包含 lib 目录作为头文件搜索路径
 echo "正在编译: $SOURCE_FILE"
-g++ -std=c++11 -Ilib -o "$OUTPUT_FILE" "$SOURCE_FILE"
+g++ -std=c++23 -Ilib -o "$OUTPUT_FILE" "$SOURCE_FILE"
 
 # 检查编译是否成功
 if [ $? -eq 0 ]; then

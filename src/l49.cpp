@@ -1,4 +1,4 @@
-#include "leetcode.hpp"
+
 #include <algorithm>
 #include <cstdint>
 #include <cstdio>
@@ -59,7 +59,8 @@ public:
         return res;
     }
 
-    static std::vector<std::vector<std::string>> groupAnagram(std::vector<std::string>& strs) {
+    // 排序入hash
+    static std::vector<std::vector<std::string>> groupAnagram_sort(std::vector<std::string>& strs) {
         std::unordered_map<std::string, std::vector<std::string>> res_map{};
         for (auto str : strs) {
             std::string key = str;
@@ -73,12 +74,42 @@ public:
         }
         return res;
     }
+
+
+    /**
+    * return a1b2c3...
+    */
+    std::string hash(const std::string& str) {
+        int counter[26] = {0};    
+        for (auto ch : str) {
+            counter[static_cast<int>(ch - 'a')]++;
+        }
+        std::string res = "";
+        for (int i = 0;i < 26;i++) {
+            int counts = counter[i];
+            if (counts == 0) continue;
+            res.append(std::string(counts, i + 'a'));
+        }
+        return res;
+    }
+    // 单词计数
+    std::vector<std::vector<std::string>> groupAnagram(std::vector<std::string>& strs) {
+        std::unordered_map<std::string, std::vector<std::string>> res_map{};
+        for (auto str : strs) {
+            std::string key = hash(str);
+            res_map[key].push_back(str);
+        }
+
+        std::vector<std::vector<std::string>> res{};
+        for (auto it : res_map) {
+            res.push_back(it.second);
+        }
+        return res;
+    }
 };
 
 int main() {
-    std::vector<int> raw_height = {0,1,0,2,1,0,1,3,3,3,3,2,1,2,1};
-    std::vector<int>& height = raw_height;
-    int result = Solution::trap2(height);
-    std::printf("result is %d\n", result);
+    std::vector<std::string> strs = {"cat","rye","aye","cud","cat","old","fop","bra"};
+    auto result = Solution().groupAnagram(strs);
     return 0;
 }
